@@ -1,0 +1,64 @@
+# better life
+alias cat="bat"
+alias gd="git diff"
+alias gs="git status -s"
+alias ta="tmux attach"
+alias vi="nvim -p"
+alias sudovi="sudo -E nvim -p"
+alias dmesg="sudo dmesg --time-format iso -w"
+alias my-ip="curl https://1.1.1.1/cdn-cgi/trace"
+alias icat="kitty +kitten icat"
+
+# systemd
+alias gstart="sudo systemctl start"
+alias gstop="sudo systemctl stop"
+alias grestart="sudo systemctl restart"
+alias greload="sudo systemctl reload"
+alias gstatus="sudo systemctl status"
+# this clashes with `man 1 zshbuiltins` "enable" and "disable"
+# for bash, this is about builtin commands (to not override executables in path)
+alias genable="sudo systemctl enable"
+alias gdisable="sudo systemctl disable"
+# jobs is a shell builtin for bg jobs
+alias gjobs="sudo systemctl list-jobs"
+
+alias ustart="systemctl --user start"
+alias ustop="systemctl --user stop"
+alias urestart="systemctl --user restart"
+alias ureload="systemctl --user reload"
+alias ustatus="systemctl --user status"
+alias uenable="systemctl --user enable"
+alias udisable="systemctl --user disable"
+alias ujobs="systemctl --user list-jobs"
+
+# suffix alias
+alias -s {md,toml}=cat
+alias -s py="ipython -i"
+alias -s git="git clone"
+alias -s json="jq ."
+
+# expand global alias after pressing SPACE
+globalias() {
+	if [[ $LBUFFER =~ '[A-Z0-9]+$' ]]; then
+		zle _expand_alias
+		zle expand-word
+	fi
+	zle self-insert
+}
+zle -N globalias
+bindkey " " globalias # space key to expand globalalias
+
+# varia
+eval "$(direnv hook zsh)"
+. /usr/share/skim/key-bindings.zsh
+. /usr/share/skim/completion.zsh
+# . /usr/share/nvm/init-nvm.sh
+
+# virtualenv + grml
+function virtual_env_prompt () {
+  # REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+  REPLY=${VIRTUAL_ENV+${VIRTUAL_ENV:t} }
+}
+grml_theme_add_token virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+

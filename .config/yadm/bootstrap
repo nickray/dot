@@ -1,0 +1,22 @@
+#!/usr/bin/bash -e
+
+paq_dir="${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+rm -rf "${paq_dir}"
+git clone --quiet --depth=1 https://github.com/savq/paq-nvim.git "${paq_dir}"
+nvim +PaqSync +qall
+
+# some binaries
+dl=~/dl
+mkdir -p "$dl"
+
+bin_path=~/.local/bin
+mkdir -p "$bin_path"
+download_url=$(
+  curl -qsL https://api.github.com/repos/direnv/direnv/releases/latest \
+  | grep browser_download_url \
+  | cut -d '"' -f 4 \
+  | grep direnv.linux-amd64
+)
+echo "downloading direnv"
+curl -qso "$bin_path/direnv" -fL "$download_url"
+chmod +x "$bin_path/direnv"

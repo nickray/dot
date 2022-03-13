@@ -1,0 +1,12 @@
+**/*.pyc
+**/*.pyo
+**/*~
+**/*.bak
+**/*.sw[abcdefghijklmnop]
+**/.gdb_history
+**/venv*
+bacon.toml
+# JetBrains
+*.iml
+/.idea
+

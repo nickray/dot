@@ -1,0 +1,13 @@
+[core]
+	excludesfile = ~/.config/git/ignore
+[diff]
+        algorithm = patience
+[init]
+	defaultBranch = main
+[pull]
+        ff = only
+[push]
+        default = simple
+[user]
+	name = Nicolas Stalder
+	email = nickray@riseup.net
