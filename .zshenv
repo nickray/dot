@@ -26,3 +26,4 @@ export EDITOR=nvim
 export LESS="-RF"
 export PYENV_ROOT=/opt/pyenv
 export PYTHONBREAKPOINT=ipdb.set_trace
+export BAT_THEME=GitHub
