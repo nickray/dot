@@ -8,6 +8,7 @@ alias sudovi="sudo -E nvim -p"
 alias dmesg="sudo dmesg --time-format iso -w"
 alias my-ip="curl https://1.1.1.1/cdn-cgi/trace"
 alias icat="kitty +kitten icat"
+alias sysyadm="sudo -E yadm --yadm-dir /etc/yadm --yadm-data /etc/yadm/data"
 
 # systemd
 alias gstart="sudo systemctl start"
