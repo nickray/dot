@@ -11,3 +11,7 @@
 [user]
 	name = Nicolas Stalder
 	email = nickray@riseup.net
+[credential]
+	helper = /usr/bin/git-credential-manager
+	credentialStore = cache
+	guiPrompt = false
